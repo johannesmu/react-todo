@@ -4,13 +4,27 @@ import {useState} from 'react'
 
 function ListItems( props ) {
   const list = props.items.map( (item) => {
-    return ( <li id={item.id} data-status={item.status} >{item.name}</li>)
+    return ( 
+        <li id={item.id} data-status={item.status} >
+          {item.name}
+          <ListItemButtons status={item.status} />
+        </li>
+      )
   })
   return (
     <ul>
       {list}
     </ul>
   )
+}
+
+function ListItemButtons( props ) {
+  if(props.status === true) {
+    return ( <button>&times;</button>)
+  }
+  else {
+    return ( <button>done</button>)
+  }
 }
 
 function App() {
@@ -24,7 +38,6 @@ function App() {
     const task = {name: taskName, id: taskId, status: false }
     setItems(items.concat(task))
     event.target.reset()
-    console.log(items)
   }
 
   return (
