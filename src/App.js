@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {useState} from 'react'
+
+function ListItems( props ) {
+  const list = props.items.map( (item) => {
+    return ( <li id={item.id} data-status={item.status} >{item.name}</li>)
+  })
+  return (
+    <ul>
+      {list}
+    </ul>
+  )
+}
 
 function App() {
+  const[items,setItems] = useState(new Array())
+  
+  const SubmitHandler = (event) => {
+    event.preventDefault()
+    const data = new FormData(event.target)
+    const taskId= new Date().getTime()
+    const taskName = data.get('task')
+    const task = {name: taskName, id: taskId, status: false }
+    setItems(items.concat(task))
+    event.target.reset()
+    console.log(items)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Todo</h1>
+        <form id="todo-form" onSubmit={SubmitHandler} >
+          <input type="text" name="task" placeholder="add item" />
+          <button type="submit">Add</button>
+        </form>
       </header>
+      <ListItems items = {items} />
     </div>
   );
 }
