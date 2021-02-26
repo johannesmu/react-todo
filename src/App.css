@@ -1,0 +1,107 @@
+:root {
+  --primary: hsla(190, 82%, 72%, 1);
+  --primary-light: hsla(173, 81%, 83%, 1);
+  --primary-mid: hsla(173, 81%, 35%, 1);
+  --primary-dark: hsla(173, 81%, 15%, 1);
+  --secondary: hsla(295, 40%, 60%, 1);
+  --secondary-light: hsla(295, 13%, 82%, 1);
+  --secondary-dark: hsla(342, 6%, 39%, 1);
+  --tertiary: hsla(360, 83%, 65%, 1);
+  --tertiary-mid: hsla(360, 50%, 45%, 1);
+  --tertiary-light: hsla(360, 50%, 90%, 1);
+  --tertiary-dark: hsla(360, 50%, 15%, 1);
+}
+
+body,
+html {
+  min-height: 100vh;
+}
+
+#root {
+  min-height: inherit;
+
+}
+
+.App {
+  min-height: inherit;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.App-header {
+  background-color: var(--primary);
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+
+.App-header>h1 {
+  margin: 0;
+}
+
+#todo-form {
+  display: flex;
+  margin: 0.5em;
+  font-size: 1.2em;
+}
+
+#todo-form>input {
+  flex: 1;
+  padding: 0.5em;
+  border-style: solid;
+  border-color: var(--tertiary-light);
+  border-width: 1px 1px 0 1px;
+  font-size: inherit;
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+#todo-form > input:focus {
+  outline: none;
+  border-color: var(--tertiary-dark);
+}
+
+#todo-form>button {
+  min-width: 12ch;
+  border-style: solid;
+  border-color: var(--tertiary-light);
+  background-color: var(--tertiary);
+  border-width: 1px 1px 1px 0;
+  color: var(--tertiary-light);
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+#list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2em;
+}
+#list li {
+  padding: 0.5em 1em;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-gap: 1em;
+}
+#list li.done .content {
+  text-decoration: line-through;
+}
+#list li > .button {
+  background-color: transparent;
+  border: 1px solid var(--primary-dark);
+  color: var(--primary-mid);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 22px;
+}
+#list li > .button:focus {
+  outline: none;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+}
+#list li > .delete {
+  color: var(--tertiary-mid);
+  border: 1px solid var(--tertiary-mid);
+}
